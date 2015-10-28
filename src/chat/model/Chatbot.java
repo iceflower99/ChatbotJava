@@ -43,7 +43,7 @@ public class Chatbot
 		this.memesList.add("rare pepe");
 		this.memesList.add("troll");
 		this.memesList.add("John cena");
-		this.memesList.add("rick roll");
+		this.memesList.add("rick rolled");
 	}
 	
 	private void buildPoliticalTopicsList()
@@ -107,7 +107,18 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
-		return false;
+		boolean hasMemes =false; 
+		
+		if(currentInput!=null)
+		{
+			if(memesList.contains(currentInput.toLowerCase()))
+			{
+			hasMemes=true;
+			}
+		}
+		
+
+		return hasMemes;
 	}
 	
 	/**

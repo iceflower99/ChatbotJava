@@ -25,11 +25,25 @@ public class Chatbot
 		politicalTopicList= new ArrayList<String>();
 		this.userName=userName;
 		this.content="Motivational Sign!";
+		
+		buildMemesList();
+		buildPoliticalTopicsList();
 	}
 	
 	private void buildMemesList()
 	{
-		
+		this.memesList.add("cute animals");
+		this.memesList.add("doge");
+		this.memesList.add("bad luck brian");
+		this.memesList.add("spoderman");
+		this.memesList.add("aliens!");
+		this.memesList.add("what if I told you");
+		this.memesList.add("unhelpful high school teacher");
+		this.memesList.add("me gusta");
+		this.memesList.add("rare pepe");
+		this.memesList.add("troll");
+		this.memesList.add("John cena");
+		this.memesList.add("rick roll");
 	}
 	
 	private void buildPoliticalTopicsList()
@@ -65,7 +79,13 @@ public class Chatbot
 	 */
 	public boolean contentChecker(String currentInput)
 	{
-		return false;
+		boolean hasContent = false;
+		
+		if(currentInput.toLowerCase().contains(content))
+		{	
+			hasContent=true;
+		}
+		return hasContent;
 	}
 	
 	/**
@@ -105,7 +125,7 @@ public class Chatbot
 	 */
 	public String getContent()
 	{
-		return null;
+		return content;
 	}
 	
 	/**

@@ -5,7 +5,7 @@ import chat.model.Chatbot;
 
 /**
  * Application controller for the Chatbot project.
- * @author mhal4767
+ * @author madeleine hales
  *@version 1.11 10/21/15 fixed error ;)
  */
 
@@ -25,6 +25,20 @@ public class ChatController {
 	public void start()
 	{
 		myDisplay.grabInput("Hello " + myBot.getUserName());
+		chat();
 	}
 
+	private void chat()
+	{
+		String conversation = myDisplay.grabInput("What would you like to talk about toady");
+		while(myBot.lengthChecker(conversation))
+		{
+			if(myBot.lengthChecker(conversation))
+			{
+			 myDisplay.grabInput("wow, I had no idea you are intrested in "+ myBot.getContent());
+			}
+			conversation=myDisplay.grabInput(conversation);
+		}
+	}
+	
 }

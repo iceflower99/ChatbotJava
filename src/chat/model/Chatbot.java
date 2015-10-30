@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Chatbot
 {
 	private ArrayList<String> memesList;
-	private ArrayList<String> politicalTopicList;
+	private ArrayList<String> politicalTopicsList;
 	private String userName;
 	private String content;
 	
@@ -22,7 +22,7 @@ public class Chatbot
 	public Chatbot(String userName)
 	{
         memesList=new ArrayList<String>();
-		politicalTopicList= new ArrayList<String>();
+		politicalTopicsList= new ArrayList<String>();
 		this.userName=userName;
 		this.content="Motivational Sign!";
 		
@@ -48,6 +48,9 @@ public class Chatbot
 	
 	private void buildPoliticalTopicsList()
 	{
+		this.politicalTopicsList.add("Democrat");
+		this.politicalTopicsList.add("Reblicuans");
+		this.politicalTopicsList.add("independt");
 		
 	}
 	

@@ -2,7 +2,7 @@ package chat.controler;
 
 import chat.veiw.ChatView;
 import chat.model.Chatbot;
-
+import chat.veiw.chatFrame;
 /**
  * Application controller for the Chatbot project.
  * @author madeleine hales
@@ -13,12 +13,13 @@ public class ChatController {
 	
 	private ChatView myDisplay;
 	private Chatbot myBot;
-	 
+	private chatFrame baseFrame; 
 	public ChatController()
 	{
 		myDisplay = new ChatView();
-		String userName = myDisplay.grabInput("What is your name?");
-	  myBot = new Chatbot(userName);
+		String user = myDisplay.grabInput("What is your name?");
+	  myBot = new Chatbot(user);
+	  baseFrame=new chatFrame(this);
 	}
 	
 	

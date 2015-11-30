@@ -15,5 +15,10 @@ public class chatFrame extends JFrame
  		basePanel= new chatPanel(baseController);
  		setUpFrame();
  	}
+ 	private void setUpFrame()
+ 	{
+ 		this.setContentPane(basePanel);
+ 		this.setSize(400,400);
+ 	}
 	
 }

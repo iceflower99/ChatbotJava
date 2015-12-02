@@ -4,15 +4,15 @@ package chat.veiw;
 import javax.swing.JFrame;
 import chat.controler.ChatController;
 
-public class chatFrame extends JFrame
+public class ChatFrame extends JFrame
 {
 	private ChatController baseController;
- 	private chatPanel basePanel;
+ 	private ChatPanel basePanel;
  
- 	public chatFrame(ChatController baseController)
+ 	public ChatFrame(ChatController baseController)
  	{
  		this.baseController= baseController;
- 		basePanel= new chatPanel(baseController);
+ 		basePanel= new ChatPanel(baseController);
  		setUpFrame();
  	}
  	private void setUpFrame()

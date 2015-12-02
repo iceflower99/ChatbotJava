@@ -7,7 +7,7 @@ package chat.controler;
  *
  */
 
-public class chatRunner 
+public class ChatRunner 
 {
 	public static void main (String []args)
 	{

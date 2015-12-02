@@ -7,23 +7,26 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import java.awt.event.*;
 import java.awt.Color;
-
-public class chatPanel extends  JPanel
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+public class ChatPanel extends  JPanel
 {
    private ChatController baseController;
    private JButton firstButton;
-   private JTextField firstTextField;
+   private JTextField typingField;
    private SpringLayout baseLayout;
-   
-   public chatPanel(ChatController baseController)
+   private JLabel promptLabel;
+   private JTextArea chatArea;
+   public ChatPanel(ChatController baseController)
    {
 	   this.baseController=baseController;
-	   
 	   baseLayout = new SpringLayout();
+	   chatArea = new JTextArea(10,30);
+	   typingField = new JTextField("words can be typed here");
 	   firstButton=new JButton("Please don't click the button");
 	   
 	   
-	   firstTextField = new JTextField("words can be typed here");
+	  
 	   
 	   setupPanel();
 	   setupLayout();
@@ -33,13 +36,14 @@ public class chatPanel extends  JPanel
    {
 	   this.setLayout(baseLayout);
 	   this.add(firstButton);
-	   this.add(firstTextField);
-   }
+	   this.add(typingField);
+	  
+	   }
    
    private void setupLayout()
    {
-	   baseLayout.putConstraint(SpringLayout.NORTH, firstTextField,36,SpringLayout.SOUTH,firstButton);
-	   baseLayout.putConstraint(SpringLayout.EAST, firstTextField, -127, SpringLayout.EAST, this);
+	   baseLayout.putConstraint(SpringLayout.NORTH, typingField,36,SpringLayout.SOUTH,firstButton);
+	   baseLayout.putConstraint(SpringLayout.EAST, typingField, -127, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 64, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 58, SpringLayout.WEST, this);
    }
@@ -49,9 +53,13 @@ public class chatPanel extends  JPanel
 	   {
 		   public void actionPerformed(ActionEvent click)
 		   {
-			   firstTextField.setText("ow,this is the most amazing click event ever! WOW!");
+			   typingField.setText("ow,this is the most amazing click event ever! WOW!");
 		   }
 	   });
+   }
+   public void actionPerformed(ActionEvent click)
+   {
+	   String userText= typingField.getText();
    }
 	
 }

@@ -111,6 +111,18 @@ public class Chatbot
 		return hasContent;
 	}
 
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean hasMash = false;
+		if(currentInput.equals("sdf" )|| currentInput.equals("dfg")|| currentInput.equals("cvb") || currentInput.equals(",./"))
+		{
+			hasMash=true;
+		}
+			
+		return hasMash;
+			
+	}
+	
 	/**
 	 * Checks if supplied String matches ANY of the topics in the
 	 * politicalTopicsList. Returns true if it does find a match and false if it

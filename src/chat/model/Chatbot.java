@@ -52,9 +52,21 @@ public class Chatbot
 
 	private void buildPoliticalTopicsList()
 	{
-		this.politicalTopicsList.add("Democrat");
-		this.politicalTopicsList.add("Reblicuans");
-		this.politicalTopicsList.add("independt");
+		this.politicalTopicsList.add("democrat");
+		this.politicalTopicsList.add("republican");
+		this.politicalTopicsList.add("independent");
+		this.politicalTopicsList.add("election");
+		this.politicalTopicsList.add("liberal");
+		this.politicalTopicsList.add("conservative");
+		this.politicalTopicsList.add("Trump");
+		this.politicalTopicsList.add("Clinton");
+		this.politicalTopicsList.add("Biden");
+		this.politicalTopicsList.add("Carson");
+		this.politicalTopicsList.add("Rubio");
+		this.politicalTopicsList.add("Fiorina");
+		this.politicalTopicsList.add("Sanders");
+		this.politicalTopicsList.add("vote");
+		this.politicalTopicsList.add("11/8/2016");
 
 	}
 
@@ -110,7 +122,18 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		return false;
+		boolean politicalTopics = false;
+		
+		for(String topics : politicalTopicsList)
+		{
+			if (currentInput.toLowerCase().contains(topics.toLowerCase()))
+			{
+				politicalTopics=true;
+			}
+		}
+	    
+		return politicalTopics;
+		
 	}
 
 	/**

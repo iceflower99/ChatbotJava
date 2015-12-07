@@ -176,7 +176,8 @@ public class Chatbot
 		String nextConversation = "oh,what esle would you like to talk about";
 		int randomTopic = (int) (Math.random() * 5); // Generates a random
 														// number between 0 and
-														// 4;
+														// 4;\
+		quitChecker(currentInput);
 
 		switch (randomTopic)
 		{
@@ -264,5 +265,12 @@ public class Chatbot
 	public void setContent(String content)
 	{
 
+	}
+	
+	public boolean quitChecker(String content)
+	{
+		if (content == "exit" || content == "quit")
+			System.exit(0);
+		return true;
 	}
 }

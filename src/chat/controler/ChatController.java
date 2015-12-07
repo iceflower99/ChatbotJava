@@ -19,7 +19,7 @@ public class ChatController {
 		myDisplay = new ChatView();
 		String user = myDisplay.grabInput("What is your name?");
 	  myBot = new Chatbot(user);
-	  baseFrame=new ChatFrame(this);
+	  //baseFrame=new ChatFrame(this);
 	}
 	
 	

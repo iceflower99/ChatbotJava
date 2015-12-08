@@ -170,6 +170,12 @@ public class Chatbot
 
 		return hasMemes;
 	}
+	
+	public boolean quitChecker (String currentInput )
+	{
+		boolean quit=false;
+				if
+	}
 
 	public String processConversation(String currentInput)
 	{

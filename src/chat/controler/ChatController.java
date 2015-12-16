@@ -19,7 +19,7 @@ public class ChatController {
 		myDisplay = new ChatView();
 		String user = myDisplay.grabInput("What is your name?");
 	  myBot = new Chatbot(user);
-	  //baseFrame=new ChatFrame(this);
+	  baseFrame=new ChatFrame(this);
 	}
 	
 	
@@ -32,11 +32,7 @@ public class ChatController {
 	private void chat()
 	{
 		String conversation = myDisplay.grabInput("What would you like to talk about toady");
-		while(myBot.lengthChecker(conversation))
-		{
-			conversation= myDisplay.grabInput(myBot.processConversation(conversation));
-		
-		}
+	
 		
 	}
 	

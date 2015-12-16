@@ -171,10 +171,15 @@ public class Chatbot
 		return hasMemes;
 	}
 	
-	public boolean quitChecker (String currentInput )
+	public boolean quitChecker(String currentInput )
 	{
 		boolean quit=false;
-				if
+			
+		if(currentInput.toLowerCase().contains("quit"))
+		{
+			quit=true;
+		}
+		return  quit;
 	}
 
 	public String processConversation(String currentInput)
@@ -183,7 +188,7 @@ public class Chatbot
 		int randomTopic = (int) (Math.random() * 5); // Generates a random
 														// number between 0 and
 														// 4;\
-		quitChecker(currentInput);
+		
 
 		switch (randomTopic)
 		{
@@ -202,7 +207,7 @@ public class Chatbot
 		case 2:
 			if (contentChecker(currentInput))
 			{
-				nextConversation = "Wow i had no idea you re into that kinda of stuff. Is there anything else you want to talk about?";
+				nextConversation = "Wow i had no idea you're into that kinda of stuff. Is there anything else you want to talk about?";
 			}
 			break;
 		case 3:
@@ -273,10 +278,4 @@ public class Chatbot
 
 	}
 	
-	public boolean quitChecker(String content)
-	{
-		if (content == "exit" || content == "quit")
-			System.exit(0);
-		return true;
-	}
 }

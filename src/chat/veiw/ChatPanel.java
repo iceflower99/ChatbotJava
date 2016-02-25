@@ -48,19 +48,22 @@ public class ChatPanel extends  JPanel
 	   textPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 	   textPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
    }
-   
+   private void setupLayout()
+   {
+	   baseLayout.putConstraint(SpringLayout.NORTH, textPane, 36, SpringLayout.SOUTH, firstButton);
+		baseLayout.putConstraint(SpringLayout.EAST, textPane, -127, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 64, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 58, SpringLayout.WEST, this);
+   }
    private void setupPanel()
    {
 	   this.setLayout(baseLayout);
 	   this.add(firstButton);
 	   this.add(textPane);
-	   this.add(typingField);
+       this.add(typingField);
 	   }
    
-   private void setupLayout()
-   {
-	  
-   }
+  
    private void setupListeners()
    {
 	   firstButton.addActionListener(new ActionListener()

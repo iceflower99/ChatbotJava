@@ -45,6 +45,7 @@ public class ChatPanel extends  JPanel
 	   chatArea.setLineWrap(true);
 	   chatArea.setWrapStyleWord(true);
 	   chatArea.setEditable(false);
+	   chatArea.setBackground(Color.ORANGE);
 	   textPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 	   textPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
    }

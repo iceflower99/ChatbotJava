@@ -32,7 +32,16 @@ public class ChatController {
 	private void chat()
 	{
 		String conversation = myDisplay.grabInput("What would you like to talk about toady");
-	
+		while(myBot.lengthChecker(conversation))
+		{
+			
+		}
+		
+	}
+	private void shutDown()
+	{
+		
+		myDisplay.grabInput("Goodbye, "+ myBot.getUserName()+"it has been my pleasure to alk with you");
 		
 	}
 	

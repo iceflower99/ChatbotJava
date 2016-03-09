@@ -31,7 +31,9 @@ public class ChatPanel extends  JPanel
 	   chatArea = new JTextArea(10,30);
 	   typingField = new JTextField("words can be typed here");
 	   firstButton=new JButton("Please don't click the button");
-	   
+	   baseLayout.putConstraint(SpringLayout.SOUTH, typingField, -6, SpringLayout.NORTH, firstButton);
+	   tweetButton = new JButton("send tweet");
+	   baseLayout.putConstraint(SpringLayout.WEST, typingField, 10, SpringLayout.WEST, tweetButton);
 	   setupChatPane();
 	   setupPanel();
 	   setupLayout();
@@ -62,6 +64,7 @@ public class ChatPanel extends  JPanel
 	   this.add(firstButton);
 	   this.add(textPane);
        this.add(typingField);
+       this.add(tweetButton);
 	   }
    
   
@@ -71,7 +74,14 @@ public class ChatPanel extends  JPanel
 	   {
 		   public void actionPerformed(ActionEvent click)
 		   {
-			   typingField.setText("ow,this is the most amazing click event ever! WOW!");
+			   typingField.setText("wow,this is the most amazing click event ever! WOW!");
+		   }
+	   });
+	   tweetButton.addActionListener(new ActionListener()
+	   {
+		   public void actionPerformed(ActionEvent click)
+		   {
+			   typingField.setText("wow, this is a tweet button cool!");
 		   }
 	   });
    }

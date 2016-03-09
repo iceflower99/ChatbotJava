@@ -3,6 +3,7 @@ package chat.controler;
 import chat.veiw.ChatView;
 import chat.model.Chatbot;
 import chat.veiw.ChatFrame;
+import chat.model.CTECTwitter;
 /**
  * Application controller for the Chatbot project.
  * @author madeleine hales
@@ -14,11 +15,13 @@ public class ChatController {
 	private ChatView myDisplay;
 	private Chatbot myBot;
 	private ChatFrame baseFrame; 
+	private CTECTwitter maddyTwitter;
 	public ChatController()
 	{
 		myDisplay = new ChatView();
 		String user = myDisplay.grabInput("What is your name?");
 	  myBot = new Chatbot(user);
+	  maddyTwitter = new CTECTwitter(this);
 	  baseFrame=new ChatFrame(this);
 	}
 	

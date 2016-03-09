@@ -15,7 +15,7 @@ private ArrayList<Status> statuses;
 private ArrayList<String> tweetTexts;
 private ChatController baseController;
 
-public CTECTwitter()
+public CTECTwitter(ChatController baseController)
 {
 	this.baseController = baseController;
 	chatbotTwitter = TwitterFactory.getSingleton();
@@ -29,10 +29,10 @@ public void sendTweet(String tweet)
 	{
 		chatbotTwitter.updateStatus("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
 	}
-	catch (TwitterException e)
+	catch (TwitterException error)
 	{
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		baseController.handleErrors(error.getErrorMessage());
+		
 	}
 
 

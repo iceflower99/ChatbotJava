@@ -47,6 +47,6 @@ public class ChatController {
 	
 	public void handleErrors(String errorMessage)
 	{
-		myDisplay.grabInput(errorMessage);
+		myDisplay.showResponse(errorMessage);
 	}
 }

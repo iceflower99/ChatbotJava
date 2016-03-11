@@ -27,7 +27,7 @@ public void sendTweet(String tweet)
 {
 	try
 	{
-		chatbotTwitter.updateStatus("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
+		chatbotTwitter.updateStatus("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @madeleinehales!");
 	}
 	catch (TwitterException error)
 	{
@@ -36,6 +36,43 @@ public void sendTweet(String tweet)
 	}
 
 
+}
+
+public void loadTweets(String twitterHandle) throws TwitterException
+{
+	Paging statusPage = new Paging(1,200);
+	int page = 1;
+	while (page <=10)
+	{
+		statusPage.setPage(page);
+		statuses.addAll(chatbotTwitter.getUserTimeline(twitterHandle,statusPage));
+		page++;
+	}
+	 for( Status currentStatus:statuses)
+	 {
+		 String[] tweetText = currentStatus.getText().split(" ");
+		 for ( String word :tweetText )
+		 {
+			 tweetTexts.add(removePunctuation(word).toLowerCase());
+		 }
+	 }
+     removeCommonEnglishWords(tweetTexts);
+     removeEmptyText();
+}
+
+private void removeEmptyText()
+{
+	
+}
+
+private List removeCommonEnglishWords(List<String> wordList)
+{
+	return null;
+}
+
+private String removePunctuation(String currentString)
+{
+	return null;
 }
 
 

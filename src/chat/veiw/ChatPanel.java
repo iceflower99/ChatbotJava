@@ -23,6 +23,9 @@ public class ChatPanel extends  JPanel
    private JButton tweetButton;
    private JButton loadButton;
    private JScrollPane textPane;
+   private JButton analyzeTwitterButton;
+   private JButton saveButton;
+   
    
    public ChatPanel(ChatController baseController)
    {
@@ -34,6 +37,9 @@ public class ChatPanel extends  JPanel
 	   baseLayout.putConstraint(SpringLayout.SOUTH, typingField, -6, SpringLayout.NORTH, firstButton);
 	   tweetButton = new JButton("send tweet");
 	   baseLayout.putConstraint(SpringLayout.WEST, typingField, 10, SpringLayout.WEST, tweetButton);
+	   analyzeTwitterButton = new JButton("Analyse some tweets");
+	   saveButton = new JButton("save tweets");
+	   loadButton = new JButton("load tweets");
 	   setupChatPane();
 	   setupPanel();
 	   setupLayout();
@@ -65,7 +71,10 @@ public class ChatPanel extends  JPanel
 	   this.add(textPane);
        this.add(typingField);
        this.add(tweetButton);
-	   }
+       this.add(analyzeTwitterButton);
+	   this.add(saveButton);
+	   this.add(loadButton);
+   }
    
   
    private void setupListeners()
@@ -81,9 +90,21 @@ public class ChatPanel extends  JPanel
 	   {
 		   public void actionPerformed(ActionEvent click)
 		   {
-			   typingField.setText("wow, this is a tweet button cool!");
+			   typingField.setText("no text to send");
 		   }
 	   });
+	   
+	   analyzeTwitterButton.addActionListener(new ActionListener()
+	   {
+		   public void actionPerformed(ActionEvent click)
+		   {
+			   String user = typingField.getText();
+			   String results = baseController.analyze(user);
+			   chatArea.setText(results);
+			   		   
+		   }
+	   });
+	   
    }
    public void actionPerformed(ActionEvent click)
    {

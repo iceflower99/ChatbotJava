@@ -126,6 +126,40 @@ private List removeCommonEnglishWords(List<String> wordList)
 	
 }
 
+public String topResults(List<String> wordList)
+{
+	String tweetResults = "";
+	
+	int topWordLocation=0;
+	
+	int topCount=0;
+	
+	for(int index =0; index< tweetTexts.size(); index++)
+	{
+		
+		int wordUseCount=0;
+		
+		for(int spot = 0; spot< wordList.size();spot++)
+		{
+			
+			if(tweetTexts.get(index).equals(tweetTexts.get(spot)))
+			{
+				wordUseCount++;
+			}
+			if(wordUseCount>topCount)
+			{
+				topCount = wordUseCount;
+				topWordLocation=index;
+			}
+		}
+	}
+	
+	tweetResults = "The top word in the tweets was " + tweetTexts.get(topWordLocation) + " and it was used " +topCount + " times!";
+	return tweetResults;
+	
+	
+}
+
 
 	// Removes defined punctuation 
 

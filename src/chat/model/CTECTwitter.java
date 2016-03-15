@@ -126,7 +126,7 @@ private List removeCommonEnglishWords(List<String> wordList)
 	
 }
 
-public String topResults(List<String> wordList)
+public String topResults()
 {
 	String tweetResults = "";
 	
@@ -139,7 +139,7 @@ public String topResults(List<String> wordList)
 		
 		int wordUseCount=0;
 		
-		for(int spot = 0; spot< wordList.size();spot++)
+		for(int spot = 0; spot< tweetTexts.size();spot++)
 		{
 			
 			if(tweetTexts.get(index).equals(tweetTexts.get(spot)))

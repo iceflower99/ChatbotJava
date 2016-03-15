@@ -63,6 +63,14 @@ public void loadTweets(String twitterHandle) throws TwitterException
 private void removeEmptyText()
 {
 	
+	for (int spot=0; spot <tweetTexts.size(); spot++)
+	{
+		if(tweetTexts.get(spot).equals(" "))
+		{
+			tweetTexts.remove(spot);
+			spot--;
+		}
+	}
 }
 
 private List removeCommonEnglishWords(List<String> wordList)
@@ -70,9 +78,12 @@ private List removeCommonEnglishWords(List<String> wordList)
 	return null;
 }
 
+
+	// Removes defined punctuation 
+
 private String removePunctuation(String currentString)
 {
-	String punctuation = ".,'?!:;\" () {} ^[]<>-";
+	String punctuation = ".,'?!:;\" () {} ^[]<>-@";
 	
 	String scrubbedString="";
 	for(int i = 0; i< currentString.length(); i++)

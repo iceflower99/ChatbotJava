@@ -4,6 +4,7 @@ import chat.veiw.ChatView;
 import chat.model.Chatbot;
 import chat.veiw.ChatFrame;
 import chat.model.CTECTwitter;
+import twitter4j.TwitterException;
 /**
  * Application controller for the Chatbot project.
  * @author madeleine hales
@@ -48,11 +49,23 @@ public class ChatController {
 		
 	}
 	
+	public void sendTweet(String tweetText)
+	{
+		maddyTwitter.sendTweet(tweetText);
+	}
 	
 	public String analyze(String userName)
 	{
-		String userAnalysis="The Twitter user "+ userName + "has many tweets. "+ maddyTwitter.topResults();
-		
+		String userAnalysis="The Twitter user "+ userName + "has many tweets. ";
+		try
+		{
+			maddyTwitter.loadTweets(userName);
+		}
+		catch (TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		userAnalysis +=maddyTwitter.topResults();
 		return userAnalysis;
 	}
 	

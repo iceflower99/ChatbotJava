@@ -4,181 +4,201 @@ import java.util.*;
 import twitter4j.*;
 import chat.controler.ChatController;
 import java.io.*;
+
 public class CTECTwitter
 
-/** 
- * @ author <madeleine hales>
- * @ version .4 Feb 25, 2016 - chnaged the seend tweet method to handle erros. 
+/**
+ * @ author <madeleine hales> @ version .4 Feb 25, 2016 - chnaged the seend
+ * tweet method to handle erros.
  */
 {
-private Twitter chatbotTwitter;
-private ArrayList<Status> statuses;
-private ArrayList<String> tweetTexts;
-private ChatController baseController;
+	private Twitter chatbotTwitter;
+	private ArrayList<Status> statuses;
+	private ArrayList<String> tweetTexts;
+	private ChatController baseController;
 
-public CTECTwitter(ChatController baseController)
-{
-	this.baseController = baseController;
-	chatbotTwitter = TwitterFactory.getSingleton();
-	statuses = new ArrayList<Status>();
-	tweetTexts= new ArrayList<String>();
-}
-
-public void sendTweet(String tweet)
-{
-	try
+	public CTECTwitter(ChatController baseController)
 	{
-		chatbotTwitter.updateStatus("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @madeleinehales!");
-	}
-	catch (TwitterException error)
-	{
-		baseController.handleErrors(error.getErrorMessage());
-		
+		this.baseController = baseController;
+		chatbotTwitter = TwitterFactory.getSingleton();
+		statuses = new ArrayList<Status>();
+		tweetTexts = new ArrayList<String>();
 	}
 
-
-}
-
-public void loadTweets(String twitterHandle) throws TwitterException
-{
-	statuses.clear();
-	tweetTexts.clear();
-	
-	Paging statusPage = new Paging(1,200);
-	int page = 1;
-	while (page <=10)
+	public void sendTweet(String tweet)
 	{
-		statusPage.setPage(page);
-		statuses.addAll(chatbotTwitter.getUserTimeline(twitterHandle,statusPage));
-		page++;
-	}
-	 for( Status currentStatus:statuses)
-	 {
-		 String[] tweetText = currentStatus.getText().split(" ");
-		 for ( String word :tweetText )
-		 {
-			 tweetTexts.add(removePunctuation(word).toLowerCase());
-		 }
-	 }
-     removeCommonEnglishWords(tweetTexts);
-     removeEmptyText();
-}
-
-private void removeEmptyText()
-{
-	
-	for (int spot=0; spot <tweetTexts.size(); spot++)
-	{
-		if(tweetTexts.get(spot).equals(" "))
+		try
 		{
-			tweetTexts.remove(spot);
-			spot--;
+			chatbotTwitter.updateStatus("I just tweeted from my Java Chatbot program! #APCSRocks @CTECNow Thanks @cscheerleader & @madeleinehales! @codyHenrichsen");
 		}
-	}
-}
-
- private String[] importWordsToArray()
- {
-	 String[] boringWords;
-	 int wordCount = 0;
-	 
-	 Scanner wordFile=new Scanner(getClass().getResourceAsStream("commonWords.txt"));
-	 while (wordFile.hasNext())
-	 {
-		 wordCount++;
-		 wordFile.next();
-	 }
-	 wordFile = new Scanner(getClass().getResourceAsStream("commonWords.txt"));
-	 boringWords= new String[wordCount];
-	 int boringWordCount= 0;
-	 while (wordFile.hasNext())
-	 {
-		 boringWords[boringWordCount]= wordFile.next();
-		 boringWordCount++;
-	 }
-	 wordFile.close();
-	 
-	 return boringWords;
-	
- }
-
-private List removeCommonEnglishWords(List<String> wordList)
-{
-	String[] boringWords= importWordsToArray();
-	
-	for(int count = 0; count< wordList.size();count++)
-	{
-		for(int removeSpot=0; removeSpot<boringWords.length; removeSpot++)
+		catch (TwitterException error)
 		{
-			if(wordList.get(count).equals(boringWords[removeSpot]))
+			baseController.handleErrors(error.getErrorMessage());
+
+		}
+
+	}
+
+	public void loadTweets(String twitterHandle) throws TwitterException
+	{
+		statuses.clear();
+		tweetTexts.clear();
+
+		Paging statusPage = new Paging(1, 200);
+		int page = 1;
+		while (page <= 10)
+		{
+			statusPage.setPage(page);
+			statuses.addAll(chatbotTwitter.getUserTimeline(twitterHandle, statusPage));
+			page++;
+		}
+		for (Status currentStatus : statuses)
+		{
+			String[] tweetText = currentStatus.getText().split(" ");
+			for (String word : tweetText)
 			{
-				wordList.remove(count);
-				count--;
-				removeSpot=boringWords.length;
+				tweetTexts.add(removePunctuation(word).toLowerCase());
+			}
+		}
+		removeCommonEnglishWords(tweetTexts);
+		removeEmptyText();
+	}
+
+	private void removeEmptyText()
+	{
+
+		for (int spot = 0; spot < tweetTexts.size(); spot++)
+		{
+			if (tweetTexts.get(spot).equals(" "))
+			{
+				tweetTexts.remove(spot);
+				spot--;
 			}
 		}
 	}
-	//removeTwitterUsernamesFromList(wordList);
-	
-	return wordList;
-	
-	
-}
 
-public String topResults()
-{
-	String tweetResults = "";
-	
-	int topWordLocation=0;
-	
-	int topCount=0;
-	
-	for(int index =0; index< tweetTexts.size(); index++)
+	private String[] importWordsToArray()
 	{
-		
-		int wordUseCount=0;
-		
-		for(int spot = 0; spot< tweetTexts.size();spot++)
+		String[] boringWords;
+		int wordCount = 0;
+
+		Scanner wordFile = new Scanner(getClass().getResourceAsStream("commonWords.txt"));
+		while (wordFile.hasNext())
 		{
-			
-			if(tweetTexts.get(index).equals(tweetTexts.get(spot)))
+			wordCount++;
+			wordFile.next();
+		}
+		wordFile = new Scanner(getClass().getResourceAsStream("commonWords.txt"));
+		boringWords = new String[wordCount];
+		int boringWordCount = 0;
+		while (wordFile.hasNext())
+		{
+			boringWords[boringWordCount] = wordFile.next();
+			boringWordCount++;
+		}
+		wordFile.close();
+
+		return boringWords;
+
+	}
+
+	private List removeCommonEnglishWords(List<String> wordList)
+	{
+		String[] boringWords = importWordsToArray();
+
+		for (int count = 0; count < wordList.size(); count++)
+		{
+			for (int removeSpot = 0; removeSpot < boringWords.length; removeSpot++)
 			{
-				wordUseCount++;
-			}
-			if(wordUseCount>topCount)
-			{
-				topCount = wordUseCount;
-				topWordLocation=index;
+				if (wordList.get(count).equals(boringWords[removeSpot]))
+				{
+					wordList.remove(count);
+					count--;
+					removeSpot = boringWords.length;
+				}
 			}
 		}
+		// removeTwitterUsernamesFromList(wordList);
+
+		return wordList;
+
 	}
-	
-	tweetResults = "The top word in the tweets was " + tweetTexts.get(topWordLocation) + " and it was used " +topCount + " times!";
-	return tweetResults;
-	
-	
-}
 
-
-	// Removes defined punctuation 
-
-private String removePunctuation(String currentString)
-{
-	String punctuation = ".,'?!:;\" () {} ^[]<>-@";
-	
-	String scrubbedString="";
-	for(int i = 0; i< currentString.length(); i++)
+	public String topResults()
 	{
-		if(punctuation.indexOf(currentString.charAt(i))==-1)
+		String tweetResults = "";
+
+		int topWordLocation = 0;
+
+		int topCount = 0;
+
+		for (int index = 0; index < tweetTexts.size(); index++)
 		{
-			scrubbedString += currentString.charAt(i);
+
+			int wordUseCount = 0;
+
+			for (int spot = 0; spot < tweetTexts.size(); spot++)
+			{
+
+				if (tweetTexts.get(index).equals(tweetTexts.get(spot)))
+				{
+					wordUseCount++;
+				}
+				if (wordUseCount > topCount)
+				{
+					topCount = wordUseCount;
+					topWordLocation = index;
+				}
+			}
 		}
+
+		tweetResults = "The top word in the tweets was " + tweetTexts.get(topWordLocation) + " and it was used " + topCount + " times!";
+		return tweetResults;
+
 	}
-	
-	
-	return scrubbedString;
-}
 
+	// Removes defined punctuation
 
+	private String removePunctuation(String currentString)
+	{
+		String punctuation = ".,'?!:;\" () {} ^[]<>-@";
+
+		String scrubbedString = "";
+		for (int i = 0; i < currentString.length(); i++)
+		{
+			if (punctuation.indexOf(currentString.charAt(i)) == -1)
+			{
+				scrubbedString += currentString.charAt(i);
+			}
+		}
+
+		return scrubbedString;
+	}
+
+	public String investigateTweet()
+	{
+		String results = "";
+
+		Query query = new Query("Captain America");
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(40.587521, -111.869178), 5, Query.KILOMETERS);
+		query.setSince("2016-1-1");
+		try
+		{
+			QueryResult result = chatbotTwitter.search(query);
+			results += "Count : " + result.getTweets().size() + "\n";
+			for (Status tweet : result.getTweets())
+			{
+				results += "@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n";
+			}
+		}
+		catch (TwitterException error)
+		{
+			error.printStackTrace();
+		}
+
+		return results;
+
+	}
 
 }

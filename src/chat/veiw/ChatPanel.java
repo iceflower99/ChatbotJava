@@ -91,6 +91,7 @@ public class ChatPanel extends  JPanel
 		   public void actionPerformed(ActionEvent click)
 		   {
 			   typingField.setText("no text to send");
+			   baseController.sendTweet(" ");
 		   }
 	   });
 	   

@@ -2,7 +2,7 @@ package chat.veiw;
 
 import chat.controler.ChatController;
 import javax.swing.JPanel;
-import javax. swing.JButton;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
@@ -106,7 +106,17 @@ public class ChatPanel extends  JPanel
 		   }
 	   });
 	   
-   }
+   
+   
+   saveButton.addActionListener(new ActionListener()
+   {
+	  public void actionPerformed(ActionEvent click)
+	  {
+		  String loadedText = IOController.readTextFromFile(promptLabel.getText());
+		  chatArea.setText(loadedText);
+	  }
+   });
+   
    public void actionPerformed(ActionEvent click)
    {
 	   String userText= typingField.getText();
